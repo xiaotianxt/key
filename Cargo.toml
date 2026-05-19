@@ -1,0 +1,21 @@
+[package]
+name = "key"
+version = "0.1.0"
+edition = "2021"
+description = "Small macOS Keychain-backed secret CLI for local tools and agents"
+authors = ["xiaotianxt"]
+repository = "https://github.com/xiaotianxt/key"
+license = "MIT"
+readme = "README.md"
+keywords = ["keychain", "secrets", "cli", "macos"]
+categories = ["command-line-utilities", "authentication"]
+
+[[bin]]
+name = "key"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+security-framework = "3.7"
+security-framework-sys = "2.17"
