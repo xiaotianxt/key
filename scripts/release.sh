@@ -84,4 +84,6 @@ else
 fi
 
 log "watching release workflow"
-gh run watch --repo "$REPO_SLUG" --workflow "$WORKFLOW" --exit-status
+run_id="$(gh run list --repo "$REPO_SLUG" --workflow "$WORKFLOW" --branch "$tag" --json databaseId --jq '.[0].databaseId')"
+[[ -n "$run_id" && "$run_id" != "null" ]] || die "release workflow run not found for ${tag}"
+gh run watch "$run_id" --repo "$REPO_SLUG" --exit-status
